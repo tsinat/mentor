@@ -3,10 +3,9 @@ import User from '../models/user';
 import { SECRET } from '../config';
 
 export function signup(req, res, next){
-    console.log('yeah');
     const email = req.body.email;
     const password = req.body.password;
-    console.log('email:', email);
+    console.log('password:', password);
     if(!email || !password) {
         res.status(400).send({error: 'you must provide email and password'});
     }

@@ -9,9 +9,9 @@ const userSchema = new Schema({
     password: String
 });
 
-userSchema.pre('save', (next) => {
+userSchema.pre('save', function(next) {
     const user = this;
-
+    console.log('user',user);
     bcrypt.genSalt(10, (err, salt) => {
         if(err) { return next(err); }
 
@@ -24,7 +24,7 @@ userSchema.pre('save', (next) => {
     });
 });
 
-userSchema.methods.comparePassword = (password, cb) => {
+userSchema.methods.comparePassword = function(password, cb) {
     bcrypt.compare(password, this.password, (err, isMatched) => {
         if(err) { return cb(err); }
 
