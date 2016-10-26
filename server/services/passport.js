@@ -5,6 +5,7 @@ import LocalStrategy from 'passport-local';
 import User from '../models/user';
 
 const localLogin = new LocalStrategy({ usernameField: 'email'}, (email, password, done) => {
+
     User.findOne({ email: email}, (err, user) => {
         if(err) { return done(err); }
         if(!user) { return done(null, false); }
