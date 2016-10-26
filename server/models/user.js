@@ -23,7 +23,6 @@ userSchema.pre('save', function(next) {
         });
     });
 });
-
 userSchema.methods.comparePassword = function(password, cb) {
     bcrypt.compare(password, this.password, (err, isMatched) => {
         if(err) { return cb(err); }
