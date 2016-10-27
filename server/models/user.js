@@ -14,7 +14,6 @@ userSchema.pre('save', function(next) {
     console.log('user',user);
     bcrypt.genSalt(10, (err, salt) => {
         if(err) { return next(err); }
-
         bcrypt.hash(user.password, salt, null, (err, hash) => {
             if(err) { return next(err); }
 
@@ -23,6 +22,7 @@ userSchema.pre('save', function(next) {
         });
     });
 });
+
 userSchema.methods.comparePassword = function(password, cb) {
     bcrypt.compare(password, this.password, (err, isMatched) => {
         if(err) { return cb(err); }
